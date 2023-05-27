@@ -1,0 +1,38 @@
+<div class="container py-4">
+
+    <app-loading *ngIf="!itemDetail"></app-loading>
+
+    <div class="row" *ngIf="itemDetail">
+        <div class="col-md-3">
+            <img *ngIf="itemDetail.poster_path" [src]="'https://image.tmdb.org/t/p/w500/'+itemDetail.poster_path"  class="w-100"/>
+            <img *ngIf="itemDetail.profile_path" [src]="'https://image.tmdb.org/t/p/w500/'+itemDetail.profile_path"  class="w-100"/>
+        </div>
+        <div class="col-md-9">
+            <h3 class="my-2">{{itemDetail.title}} {{itemDetail.name}}</h3>
+            <p class="py-2 text-muted mb-3">{{itemDetail.overview}}</p>
+            <ul class="list-unstyled d-flex">
+                <li class="bg-info p-2 rounded-2 mx-2" *ngFor="let genre of itemDetail.genres">{{genre.name}}</li>
+            </ul>
+            <h6 class="py-2 text-muted mb-3 fw-bold"> Vote Count : {{itemDetail.vote_count}}</h6>
+            <h6 class="py-2 text-muted mb-3 fw-bold"> Vote Average : {{itemDetail.vote_average}}</h6>
+            <h6 class="py-2 text-muted mb-3 fw-bold"> Popularity: {{itemDetail.popularity}}</h6>
+            <h6 class="py-2 text-muted mb-3 fw-bold"> Release Date : {{itemDetail.release_date}}</h6>
+            
+        </div>
+    </div>
+    
+    <h4 class="py-2 text-muted text-center" *ngIf="movieSimilar.length">Similar to it :</h4>
+    
+    <div class="row py-4" *ngIf="movieSimilar.length">
+        <div  class="col-md-2" *ngFor="let similar of movieSimilar">
+            <div  (click)="getSimilar(similar.id, mediaType)" class="item position-relative">
+               
+                 <img *ngIf="similar.poster_path" [src]="'https://image.tmdb.org/t/p/w500/'+similar.poster_path"  class="w-100"/>
+                 <img *ngIf="similar.profile_path" [src]="'https://image.tmdb.org/t/p/w500/'+similar.profile_path"  class="w-100"/>
+                 <h3 class="h6 my-2">{{similar.title}} {{similar.name}}</h3>
+                 <div *ngIf="similar.vote_average" class="vote position-absolute top-0 end-0 p-2">{{similar.vote_average.toFixed(2)}}</div>
+                
+             </div>
+          </div>
+    </div>
+</div>

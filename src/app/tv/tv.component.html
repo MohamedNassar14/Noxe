@@ -1,0 +1,11 @@
+<div class="container">
+    <app-loading *ngIf="tvData.length == 0"></app-loading>
+ <div class="row">
+    <div class="py-4">
+        <input type="text" [(ngModel)]="terms" class="form-control" placeholder="Search For TvShow ..."/>
+    </div>
+    <div class="col-md-2 my-3" *ngFor="let tv of tvData | search:terms">
+        <app-mediaitem [item]="tv"></app-mediaitem>
+ </div>
+    </div>
+</div>

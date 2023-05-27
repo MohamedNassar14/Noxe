@@ -1,0 +1,14 @@
+<div class="container">
+    <app-loading *ngIf="peopleData.length == 0"></app-loading>
+
+    <div class="row">
+
+        <div class="py-4">
+            <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search For People ..."/>
+        </div>
+
+         <div class="col-md-2" *ngFor="let person of peopleData|search:term">
+            <app-mediaitem [item]="person"></app-mediaitem>
+         </div>
+    </div>
+</div>
